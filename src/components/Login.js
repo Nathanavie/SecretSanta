@@ -6,8 +6,9 @@ class Login extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            username: '',
+            email: '',
             password: '',
+            emailValid: null,
         }
     }
 
@@ -15,28 +16,39 @@ class Login extends React.Component {
         const { name, value } = e.target;
         this.setState({ [name]: value });
     }
- 
+
+    validateForm = (e) => {
+        e.preventDefault();
+        let {email, password} = this.state;
+        let validation = false;
+        if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) validation = true;
+        if(validation) this.props.logIn(email, password.toString());
+    }
     render() {
         return(
             <>
+            <form onSubmit={this.validateForm}>
                 <input
                     type="email"
-                    name="username"
-                    value={this.state.username}
+                    name="email"
+                    value={this.state.email}
                     onChange={this.handleChange}
+                    required
                 />
                 <input
                     type="password"
                     name="password"
                     value={this.state.password}
                     onChange={this.handleChange}
+                    required
                 />
                 <input
                     type="submit"
-                    onClick={() => this.props.logIn(this.state.username, this.state.password)}
+                    value="Login"
                 />
+            </form>
 
-                <Link to={'./signup'}>Sign Up</Link>
+            <Link to={'./signup'}>Sign Up</Link>
             </>
         )
     }
