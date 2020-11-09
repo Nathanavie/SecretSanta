@@ -44,7 +44,7 @@ class Setup extends React.Component {
     }
 
     render() {
-        let { complete, firstname, surname, dob, addressLine1, addressLine2, TownCity, PostCode } = this.state
+        let { complete, firstname, surname, dob } = this.state
         if(complete) {
             return(
                 <>
