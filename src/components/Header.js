@@ -26,6 +26,11 @@ render() {
           onClick={e => this.handleToggle(e)}
         />
       </div>
+      <input
+        type="submit"
+        value="Log Out"
+        onClick={() => this.props.logOutUser()}
+      />
     </header>
   )
 }

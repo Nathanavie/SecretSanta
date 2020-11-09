@@ -25,8 +25,22 @@ class Setup extends React.Component {
 
     submitDetails = (e) => {
         e.preventDefault();
-        //Save this data in a Firebase database
-        this.setState({complete: true})
+        let user = {
+            firstname: this.state.firstname,
+            surname: this.state.surname,
+            dob: this.state.dob,
+            addressLine1: this.state.addressLine1,
+            addressLine2: this.state.addressLine2,
+            TownCity: this.state.TownCity,
+            PostCode: this.state.PostCode,
+            Email: this.props.userEmail,
+            Groups: []
+        }
+        this.props.pushUser(false, user);
+        let link = window.location.href
+        let suffix = link.indexOf('setup')
+        let prefix = link.slice(0, suffix)
+        window.location.href = `${prefix}home`
     }
 
     render() {
@@ -47,55 +61,29 @@ class Setup extends React.Component {
                     <p>Add some details about youself so your secret santa can appropriately send you your gift!</p>
                     <p>These details are kept securely and will not be shared</p>
                     <form onSubmit={this.submitDetails}>
-                        <label>First Name</label>
+                        <label>First Name *</label>
                         <input
                             type="text"
                             name="firstname"
                             value={firstname}
                             onChange={this.handleChange}
+                            required
                             />
-                        <label>Surname</label>
+                        <label>Surname *</label>
                         <input
                             type="text"
                             name="surname"
                             value={surname}
                             onChange={this.handleChange}
+                            required
                             />
-                        <label>Date Of Birth</label>
+                        <label>Date Of Birth *</label>
                         <input
                             type="date"
                             name="dob"
                             value={dob}
                             onChange={this.handleChange}
-                            />
-                        <label>Address</label>
-                        <label>Address Line 1</label>
-                        <input
-                            type="text"
-                            name="addressLine1"
-                            value={addressLine1}
-                            onChange={this.handleChange}
-                            />
-                        <label>Address Line 2</label>
-                        <input
-                            type="text"
-                            name="addressLine2"
-                            value={addressLine2}
-                            onChange={this.handleChange}
-                            />
-                        <label>Town / City</label>
-                        <input
-                            type="text"
-                            name="TownCity"
-                            value={TownCity}
-                            onChange={this.handleChange}
-                            />
-                        <label>PostCode</label>
-                        <input
-                            type="text"
-                            name="PostCode"
-                            value={PostCode}
-                            onChange={this.handleChange}
+                            required
                             />
                         <input
                             type="submit"

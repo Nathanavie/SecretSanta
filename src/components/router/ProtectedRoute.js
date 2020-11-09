@@ -4,7 +4,6 @@ import { Route, Redirect } from "react-router-dom";
 
 //Protected Route = when a user is NOT logged in
 const ProtectedRoute = ({ auth: userUID, render: RenderComponent, new: newUser, ...rest }) => {
-console.log(newUser)
   return (
     <Route
       {...rest}
