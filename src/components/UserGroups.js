@@ -8,7 +8,7 @@ const UserGroups = props => {
         let groupID = Object.keys(group)[0]
         let groupName = Object.values(group)[0]['name']
         return (
-            <Link to={`/group/${groupID}`} key={index}>
+            <Link className="groupLink" to={`/group/${groupID}`} key={index}>
                 <div className="group" id={groupID}>
                     <p>{groupName}</p>
                 </div>

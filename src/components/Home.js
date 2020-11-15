@@ -17,8 +17,6 @@ class Home extends React.Component {
         }
     }
 
-   
-
     handleChange = (e) => {
         const { name, value } = e.target;
         this.setState({ [name]: value });
@@ -48,14 +46,6 @@ class Home extends React.Component {
             })
         })
     }
-
-    componentDidMount() {
-    }
-
-    componentDidUpdate() {
-    }
-
-
 
     render() {
         let { page } = this.state;
@@ -144,7 +134,7 @@ class Home extends React.Component {
                 <div className="groups">
                     <h1>Home</h1>
                     <div>
-                        <h2>Your Groups</h2>
+                        <h2>Your Secret Santa Groups</h2>
                         <UserGroups userGroups={this.props.userGroups} uid={this.props.uid}/>
                     </div>
                     <div>

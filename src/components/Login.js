@@ -8,7 +8,7 @@ class Login extends React.Component {
         this.state = {
             email: '',
             password: '',
-            emailValid: null,
+            emailValid: '',
         }
     }
 
@@ -22,33 +22,47 @@ class Login extends React.Component {
         let {email, password} = this.state;
         let validation = false;
         if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) validation = true;
-        if(validation) this.props.logIn(email, password.toString());
+        if(validation) {
+            this.props.logIn(email, password.toString());
+        } else {
+            this.setState({
+                emailValid: 'error'
+            })
+        }
     }
     render() {
         return(
             <>
-            <form onSubmit={this.validateForm}>
-                <input
-                    type="email"
-                    name="email"
-                    value={this.state.email}
-                    onChange={this.handleChange}
-                    required
-                />
-                <input
-                    type="password"
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.handleChange}
-                    required
-                />
-                <input
-                    type="submit"
-                    value="Login"
-                />
-            </form>
-
-            <Link to={'./signup'}>Sign Up</Link>
+            <div className="loginRegisterDiv">
+                <h1>Log in to your account</h1>
+                <form className="detailsForm" onSubmit={this.validateForm}>
+                    <label forHtml="email">Email Address</label>
+                    <input
+                        className={this.state.emailValid}
+                        type="email"
+                        name="email"
+                        value={this.state.email}
+                        onChange={this.handleChange}
+                        required
+                    />
+                    <label forHtml="password">Password</label>
+                    <input
+                        type="password"
+                        name="password"
+                        value={this.state.password}
+                        onChange={this.handleChange}
+                        required
+                    />
+                    <input
+                        type="submit"
+                        value="Login"
+                    />
+                </form>
+            </div>
+            <div className="loginRegisterDiv">
+                <h2>Don't have an account yet?</h2>
+                <Link className="SignLogIn" to={'./signup'}>Sign Up</Link>
+            </div>
             </>
         )
     }

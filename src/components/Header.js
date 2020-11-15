@@ -1,5 +1,7 @@
 import React from 'react';
 
+import christmas from '../assets/xmasBackgroundfull.png'
+
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -17,20 +19,17 @@ handleToggle = (e) => {
 
 render() {
   return(
-    <header id="top">
+    <header>
       <div className="header-content">
-        <p>{this.props.auth}</p>
-        <i
-          className="fa fa-bars"
-          aria-hidden="true"
-          onClick={e => this.handleToggle(e)}
-        />
+        <img id="headerIcon" src={christmas} alt="christmas Tree Icon" />
+        <nav className = {`${this.state.isExpanded ? "is-expanded" : ""}`}>
+          <input
+            type="submit"
+            value="Log Out"
+            onClick={() => this.props.logOutUser()}
+          />
+        </nav>
       </div>
-      <input
-        type="submit"
-        value="Log Out"
-        onClick={() => this.props.logOutUser()}
-      />
     </header>
   )
 }

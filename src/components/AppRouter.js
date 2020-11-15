@@ -10,6 +10,7 @@ import Setup from '../components/Setup';
 import SignUp from '../components/SignUp';
 import Group from '../components/Group';
 import Header from '../components/Header';
+import Join from '../components/Join';
 
 class AppRouter extends React.Component {
     constructor(props){
@@ -183,6 +184,25 @@ class AppRouter extends React.Component {
 
     }
 
+    checkUserSetup = (uid) => {
+        let allUsers = this.state.allUsers
+        let matched = 0
+        for(let user in allUsers) {
+            if(user === uid) {
+                matched++
+                console.log('EQUAL!')
+            } 
+        }
+        console.log(matched)
+        if(matched === 0) {
+            let link = window.location.href
+            console.log(window.location.href)
+            let suffix = link.indexOf('login')
+            let prefix = link.slice(0, suffix)
+            window.location.href = `${prefix}setup`
+        }
+    }
+
     getRandomString = (length) => {
         var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         var result = '';
@@ -197,6 +217,7 @@ class AppRouter extends React.Component {
             .auth()
             .signInWithEmailAndPassword(email, password)
             .then(res => {
+                this.checkUserSetup(res.user.uid)
                 this.setState({uid: res.user.uid});
                 this.authStateChanged().then(() => {
                     this.pullFromFirebase()
@@ -232,8 +253,9 @@ class AppRouter extends React.Component {
                     <Route exact path="/">{ <Redirect to={"/login"} />}</Route>                    
                     <ProtectedRoute path="/signup" new={newUser} auth={uid} render={ () => <SignUp createUser={this.createUser}/>}/>
                     <ProtectedRoute path="/login" new={newUser} auth={uid} render={ () => <Login logIn={this.logInUser}/>}/>
-                    <PrivateRoute path="/setup" auth={uid} render={ () => <Setup userEmail={this.state.userEmail} pushUser={this.pushToFirebase} logOutUser={this.logOutUser}/>}/>
-                    <PrivateRoute path="/home" auth={uid} render={ () => <Home userGroups={userGroups} uid={this.state.uid} getGroups={this.updateGroups} joinGroup={this.joinGroup} createGroup={this.createGroup} logOutUser={this.logOutUser} push={this.pullFromFirebase}/>}/>
+                    <PrivateRoute path="/setup" auth={uid} render={ () => <Setup userEmail={this.state.userEmail} pushUser={this.pushToFirebase}/>}/>
+                    <PrivateRoute path="/home" auth={uid} render={ () => <Home userGroups={userGroups} uid={this.state.uid} getGroups={this.updateGroups} joinGroup={this.joinGroup} createGroup={this.createGroup}/>}/>
+                    <PrivateRoute path="/join" auth={uid} render={ () => <Join uid={this.state.uid} joinGroup={this.joinGroup} createGroup={this.createGroup}/>}/>
                     <PrivateRoute path="/group" auth={uid} render={ () => <Group buyingGroups={buyingGroups} buyers={this.addBuyingGroups} bought={this.setToBought} allUsers={allUsers} userGroups={userGroups} uid={uid} start={this.startSecretSanta}/>}/>
                 </Switch>  
             </Router>

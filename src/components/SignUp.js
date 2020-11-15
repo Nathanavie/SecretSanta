@@ -51,27 +51,43 @@ class SignUp extends React.Component {
     render() {
         return(
             <>
-            <form onSubmit={this.validateSignUp}>
-                <input
-                    type="email"
-                    name="email"
-                    value={this.state.email}
-                    onChange={this.handleChange}
-                    required
-                />
-                <input
-                    type="password"
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.handleChange}
-                    required
-                />
-                <input
-                    type="submit"
-                    value="Sign Up"
-                />
-            </form>
-                <Link to='/login'>Back to Log In</Link>
+            <div className="loginRegisterDiv">
+            <h1>Create a new account</h1>
+                <form className="detailsForm" onSubmit={this.validateSignUp}>
+                <label forHtml="email">Email Address</label>
+                    <input
+                        type="email"
+                        name="email"
+                        value={this.state.email}
+                        onChange={this.handleChange}
+                        required
+                    />
+                    <p>Your password needs to have</p>
+                    <ul>
+                        <li>At least 1 Capital letter</li>
+                        <li>At least 8 characters</li>
+                        <li>At least 1 number</li>
+                        <li>At least 1 special character (eg. !, ", ?, ~)</li>
+                        <li>A total of 0 spaces</li>
+                    </ul>
+                    <label forHtml="password">Password</label>
+                    <input
+                        type="password"
+                        name="password"
+                        value={this.state.password}
+                        onChange={this.handleChange}
+                        required
+                    />
+                    <input
+                        type="submit"
+                        value="Sign Up"
+                    />
+                </form>
+            </div>
+            <div className="loginRegisterDiv">
+                <h2>Already have an account?</h2>
+                <Link className="SignLogIn" to='/login'>Back to Log In</Link>
+            </div>
             </>
         )
     }

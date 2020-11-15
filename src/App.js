@@ -3,7 +3,136 @@ import './App.css';
 
 function App() {
   return (
-    <AppRouter />
+    <>
+      <div class="snowflakes" aria-hidden="true">
+          <div class="snowflake">
+          ❅
+          </div>
+          <div class="snowflake">
+          ❅
+          </div>
+          <div class="snowflake">
+          ❆
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❅
+          </div>
+          <div class="snowflake">
+          ❆
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❅
+          </div>
+          <div class="snowflake">
+          ❆
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+          <div class="snowflake">
+          ❄
+          </div>
+      </div>
+      <div id="mainContent">
+        <AppRouter />
+      </div>
+    </>
   );
 }
 

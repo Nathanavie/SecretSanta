@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import Modal from './Modal'
-
 const Group = props => {
     let pageURL = window.location.href;
     let slicePrefix = 'group/';
@@ -12,6 +11,7 @@ const Group = props => {
     let allUsers = props.allUsers;
     let groupAdmin;
     let groupStatus;
+    let groupRules;
     const [showModal, setShowModal] = useState(false)
     let userInformation = [];
     const [buyingGroups, setBuyingGroups] = useState([]);
@@ -25,6 +25,7 @@ const Group = props => {
             groupName = Object.values(group)[0]['name'];
             groupMembers = Object.values(group)[0]['members'];
             finalBuyingGroups = Object.values(group)[0]['buyingGroups'];
+            groupRules = Object.values(group)[0]['rules'];
             console.log(Object.values(group)[0])
             return null
         } else {
@@ -65,9 +66,26 @@ const Group = props => {
         }
     })
 
+    const rules = groupRules.map((rule, index) => {
+        console.log(`rule ${index + 1}: ${rule}`)
+        if(rule !== "") {
+            return(
+                <li>{rule}</li>
+            )
+        } else {
+            return null
+        }
+    })
+
     const updateBoughtStatus = (id) => {
         props.bought(id)
     } 
+
+    const copyInvLink = () => {
+        let beginningOfLink = pageURL.slice(0, (indexOfGroupID - slicePrefix.length))
+        let invLink = `${beginningOfLink}join/${groupID}` 
+        navigator.clipboard.writeText(invLink)
+    }
     
     const setBuyers = () => {
         let buyers = [];
@@ -115,16 +133,25 @@ const Group = props => {
             <span key={index}>{receiverName}</span>
         )
     })
-
     if(groupStatus === "setup") {
         return (
             <>
                 {groupStatus === "setup" ? <h2>This Secret Santa has not yet started, you won't have a person to buy for yet!</h2> : <h2>This Secret Santa has begun, your person is {giftReceiver}</h2>}
                 <h1>Group {groupName}</h1>
+                <h3>Group Rules</h3>
+                <ul>
+                    {rules}
+                </ul>
                 {memberInformation}
                 {props.uid === groupAdmin ? <><input type="button" value="Start The Secret Santa!" onClick={setBuyers}/><p>(No one will be able to join or leave once you click this)</p> </> : null}
                 <Link to={'../home'}>Dashboard</Link>  
-
+                <div>
+                    <h5>Invite your friends!</h5>
+                    <p>Get them to enter this code when Joining</p>
+                    <p>Group code: {groupID}</p>
+                    <p>Or send them a link!</p>
+                    <button onClick={copyInvLink}>Copy Invite Link</button>
+                </div>
             </>
         )
     } else {
@@ -133,6 +160,10 @@ const Group = props => {
                 {showModal ? <Modal bought={updateBoughtStatus} closeModal={toggleModal} groupID={groupID} /> : null}
                 {groupStatus === "setup" ? <h2>This Secret Santa has not yet started, you won't have a person to buy for yet!</h2> : <h2>This Secret Santa has begun, your person is {giftReceiver}</h2>}
                 <h1>Group {groupName}</h1>
+                <h3>Group Rules</h3>
+                <ul>
+                    {rules}
+                </ul>
                 {memberInformation}
                 <Link to={'../home'}>Dashboard</Link>            
             </>
