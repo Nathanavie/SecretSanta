@@ -154,7 +154,7 @@ class AppRouter extends React.Component {
                         members: group[1]['members'],
                         name: group[1]['name'],
                         rules: group[1]['rules']
-                    },
+                    }
                 }
                 allGroups.push(thisGroup)
                 let members = Object.keys(group[1].members);
@@ -172,12 +172,16 @@ class AppRouter extends React.Component {
                         }
                         groupsUserIsIn.push(usersGroup)
                     } 
+
+                    return null
                 })
                 this.setState({
                     userGroups: groupsUserIsIn,
                     allGroups: allGroups,
                     allUsers: content.Users
                 })
+
+                return null
             })
         })
         return content;
