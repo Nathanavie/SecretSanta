@@ -23,11 +23,7 @@ render() {
       <div className="header-content">
         <img id="headerIcon" src={christmas} alt="christmas Tree Icon" />
         <nav className = {`${this.state.isExpanded ? "is-expanded" : ""}`}>
-          <input
-            type="submit"
-            value="Log Out"
-            onClick={() => this.props.logOutUser()}
-          />
+          {this.props.uid !== 'no-log' ? <input type="submit" value="Log Out" onClick={() => this.props.logOutUser()} /> : null }
         </nav>
       </div>
     </header>
