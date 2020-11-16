@@ -101,10 +101,13 @@ button {
   text-align: left;
 }
 
-input[name="password"], input[name="email"], input[type="text"] {
+input[name="password"], input[name="email"], input[type="text"], input[type="date"] {
   padding: 10px
 }
 
+input[type="date"] {
+  width: 12.5em;
+}
 .group p {
   pointer-events: none;
   color: #fff;

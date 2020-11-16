@@ -60,7 +60,7 @@ class Setup extends React.Component {
                     <h4>Please enter details about yourself</h4>
                     <p>Add some details about youself so your secret santa can appropriately send you your gift!</p>
                     <p>These details are kept securely and will not be shared</p>
-                    <form onSubmit={this.submitDetails}>
+                    <form className="detailsForm" onSubmit={this.submitDetails}>
                         <label>First Name *</label>
                         <input
                             type="text"
@@ -90,11 +90,6 @@ class Setup extends React.Component {
                             value="Save these details"
                             />
                     </form>
-                    <input
-                        type="submit"
-                        value="Log Out"
-                        onClick={() => this.props.logOutUser()}
-                        />
                 </>
             )
       }
