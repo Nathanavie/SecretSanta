@@ -56,6 +56,13 @@ const Group = props => {
                     {user[1] ? <input type="button" value="You already bought your gift" disabled/>: <input onClick={toggleModal} type="button" value="I have bought my gift!"/>}
                 </div>
             )
+        } else if (groupStatus === 'progress') {
+            return (
+                <div key={index} className="groupMember">
+                    <p><strong>{user[0]}</strong> {props.uid === user[2] ? <em>(you)</em> : null}</p>
+                    {user[1] ? <p className="bought">They have bought their gift!</p> : <p className="notBought">They have <strong>not</strong> bought their gift!</p>}
+                </div>
+            )
         } else {
             return (
                 <div key={index} className="groupMember">
