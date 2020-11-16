@@ -30,13 +30,17 @@ class Login extends React.Component {
             })
         }
     }
+
+    componentDidMount() {
+        console.log(this.props)
+    }
     render() {
         return(
             <>
             <div className="loginRegisterDiv">
                 <h1>Log in to your account</h1>
                 <form className="detailsForm" onSubmit={this.validateForm}>
-                    <label forHtml="email">Email Address</label>
+                    <label forhtml="email">Email Address</label>
                     <input
                         className={this.state.emailValid}
                         type="email"
@@ -45,14 +49,9 @@ class Login extends React.Component {
                         onChange={this.handleChange}
                         required
                     />
-                    <label forHtml="password">Password</label>
-                    <input
-                        type="password"
-                        name="password"
-                        value={this.state.password}
-                        onChange={this.handleChange}
-                        required
-                    />
+                    <label forhtml="password">Password</label>
+                    {this.props.passWordValid === false ? <input className="errorInput" type="password" name="password" value={this.state.password} onChange={this.handleChange} required /> : <input type="password" name="password" value={this.state.password} onChange={this.handleChange} required />}
+                    {this.props.passWordValid === false ? <div className="errorBlock"><p>Incorrect Password</p></div> : null}
                     <input
                         type="submit"
                         value="Login"

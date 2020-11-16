@@ -51,16 +51,15 @@ const Group = props => {
         if(props.uid === user[2] && groupStatus === 'progress') {
             return (
                 <div key={index} className="groupMember">
-                    <p>{user[0]} <em>(You)</em></p>
-                    {user[1] ? <p>They have bought their gift!</p> : <p>They have <strong>not</strong> bought their gift!</p>}
+                    <p><strong>{user[0]}</strong> <em>(You)</em></p>
+                    {user[1] ? <p className="bought">They have bought their gift!</p> : <p className="notBought">They have <strong>not</strong> bought their gift!</p>}
                     {user[1] ? <input type="button" value="You already bought your gift" disabled/>: <input onClick={toggleModal} type="button" value="I have bought my gift!"/>}
                 </div>
             )
         } else {
             return (
                 <div key={index} className="groupMember">
-                    <p>{user[0]} {props.uid === user[2] ? <em>(you)</em> : null}</p>
-                    {user[1] ? <p>They have bought their gift!</p> : <p>They have <strong>not</strong> bought their gift!</p>}
+                    <p><strong>{user[0]}</strong> {props.uid === user[2] ? <em>(you)</em> : null}</p>
                 </div>
             )
         }
@@ -68,9 +67,10 @@ const Group = props => {
 
     const rules = groupRules.map((rule, index) => {
         console.log(`rule ${index + 1}: ${rule}`)
+        // if(groupRules[0] === "") return
         if(rule !== "") {
             return(
-                <li>{rule}</li>
+                <p className="rule" key={index}>Rule {index + 1}: {rule}</p>
             )
         } else {
             return null
@@ -82,9 +82,9 @@ const Group = props => {
     } 
 
     const copyInvLink = () => {
-        let beginningOfLink = pageURL.slice(0, (indexOfGroupID - slicePrefix.length))
-        let invLink = `${beginningOfLink}join/${groupID}` 
-        navigator.clipboard.writeText(invLink)
+        // let beginningOfLink = pageURL.slice(0, (indexOfGroupID - slicePrefix.length))
+        // let invLink = `${beginningOfLink}join/${groupID}` 
+        navigator.clipboard.writeText(groupID)
     }
     
     const setBuyers = () => {
@@ -136,21 +136,20 @@ const Group = props => {
     if(groupStatus === "setup") {
         return (
             <>
-                {groupStatus === "setup" ? <h2>This Secret Santa has not yet started, you won't have a person to buy for yet!</h2> : <h2>This Secret Santa has begun, your person is {giftReceiver}</h2>}
-                <h1>Group {groupName}</h1>
-                <h3>Group Rules</h3>
-                <ul>
-                    {rules}
-                </ul>
-                {memberInformation}
-                {props.uid === groupAdmin ? <><input type="button" value="Start The Secret Santa!" onClick={setBuyers}/><p>(No one will be able to join or leave once you click this)</p> </> : null}
-                <Link to={'../home'}>Dashboard</Link>  
-                <div>
-                    <h5>Invite your friends!</h5>
-                    <p>Get them to enter this code when Joining</p>
-                    <p>Group code: {groupID}</p>
-                    <p>Or send them a link!</p>
-                    <button onClick={copyInvLink}>Copy Invite Link</button>
+                <div className="container">
+                    <h1>{groupName}</h1>
+                    {groupStatus === "setup" ? <h3>This Secret Santa has not yet started, you won't have a person to buy for yet!</h3> : <h3>This Secret Santa has begun, your person is {giftReceiver}</h3>}
+                    <div className="groupRules">
+                        {rules}
+                    </div>
+                    {memberInformation}
+                    {props.uid === groupAdmin ? <><input type="button" id="startButton" value="Start The Secret Santa!" onClick={setBuyers}/><p id="notice">(No one will be able to join or leave once you click this)</p> </> : null}
+                    <div>
+                        <h5>Invite your friends!</h5>
+                        <p>Get them to enter the group code when Joining</p>
+                        <button onClick={copyInvLink}>Copy Group Code</button>
+                    </div>
+                    <Link className="dashboard" to={'../home'}>Dashboard</Link>  
                 </div>
             </>
         )
@@ -158,14 +157,17 @@ const Group = props => {
         return(
             <>
                 {showModal ? <Modal bought={updateBoughtStatus} closeModal={toggleModal} groupID={groupID} /> : null}
-                {groupStatus === "setup" ? <h2>This Secret Santa has not yet started, you won't have a person to buy for yet!</h2> : <h2>This Secret Santa has begun, your person is {giftReceiver}</h2>}
-                <h1>Group {groupName}</h1>
-                <h3>Group Rules</h3>
-                <ul>
-                    {rules}
-                </ul>
-                {memberInformation}
-                <Link to={'../home'}>Dashboard</Link>            
+                <div className="container">
+                    <h1>{groupName}</h1>
+                    {groupStatus === "setup" ? <h3>This Secret Santa has not yet started, you won't have a person to buy for yet!</h3> : <h3>This Secret Santa has begun, your person is <span id="person">{giftReceiver}</span></h3>}
+                    <div className="groupRules">
+                        {rules}
+                    </div>
+                    <div id="memberList">
+                        {memberInformation}
+                    </div>
+                    <Link className="dashboard" to={'../home'}>Dashboard</Link>            
+                </div>
             </>
         )
     }

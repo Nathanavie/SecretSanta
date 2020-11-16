@@ -16,6 +16,7 @@ class Join extends React.Component {
         this.setState({
             groupID: groupID
         })
+        this.props.joinFromLink()
     }
 
     joinGroup = (groupID) => {

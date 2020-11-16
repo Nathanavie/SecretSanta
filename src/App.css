@@ -2,7 +2,8 @@ body {
   background: url('./assets/xmasBackground.png') #000000;
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: bottom; 
+  background-position: bottom;
+  font-family: 'Roboto' 
 }
 
 #mainContent {
@@ -15,7 +16,7 @@ body {
   text-align: center;
 }
 
-.group, button, input[type="submit"], .SignLogIn {
+.group, button, input[type="submit"], .SignLogIn, input[type="button"] {
   color: #fff;
   border: solid 0.5px black;
   cursor: pointer;
@@ -23,24 +24,44 @@ body {
   transition: all 0.2s ease-in-out;
 }
 
-button, input[type="submit"] {
+button, input[type="submit"], input[type="button"] {
   padding: 1em 2em;
 }
 
 input[type="submit"] {
   margin: 1em 0;
 }
-
+/* 
 button {
   width: 100%;
+} */
+
+.errorBlock {
+  background: red;
+  width: 99%;
+  opacity: 1;
+  animation: fadeOutError 15s forwards;
 }
 
-.group:hover, button:hover, input[type="submit"]:hover, .SignLogIn:hover{
+.errorBlock p {
+  font-size: 10px;
+}
+
+@keyframes fadeOutError {
+  0%, 99% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.group:hover, button:hover, input[type="submit"]:hover, .SignLogIn:hover, .dashboard:hover, input[type="button"]:hover {
   transform: scale(1.02);
   box-shadow: 0 0 10px #fff;
 }
 
-.loginRegisterDiv {
+.loginRegisterDiv, .container {
   width: 100%;
   box-shadow: 0 0 10px #fff;
   border: solid 0.1px;
@@ -49,7 +70,23 @@ button {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  margin-bottom: 10px
+  margin-bottom: 10px;
+  background: #00000080;
+}
+
+.groupMember {
+  box-shadow: 0 0 10px #fff;
+  padding: 5px;
+}
+
+#memberList {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 10px;
+}
+
+.container h3 {
+  margin: 0 0.4em 0.5em;
 }
 
 .detailsForm {
@@ -57,13 +94,14 @@ button {
   flex-direction: column;
   align-items: center;
   height: fit-content;
+  width: 100%;
 }
 
 .detailsForm ul {
   text-align: left;
 }
 
-.detailsForm input[name="password"], .detailsForm input[name="email"] {
+input[name="password"], input[name="email"], input[type="text"] {
   padding: 10px
 }
 
@@ -73,15 +111,21 @@ button {
   text-decoration: none;
 }
 
-.groupLink, .SignLogIn {
+.groupLink, .SignLogIn, .dashboard {
   text-decoration: none;
 }
 
-.SignLogIn {
+.SignLogIn, .dashboard {
   color: #fff;
   width: fit-content;
-  margin: 0 auto;
+  margin: 0 auto 1em;
   padding: 10px;
+}
+
+.dashboard {
+  background: #000;
+  margin: 0.5em auto;
+  transition: all 0.3s ease-in-out;
 }
 
 .groupContainer {
@@ -122,6 +166,65 @@ header {
 nav.is-expanded {
   display: flex;
   height: auto;
+}
+
+.bottomNav {
+  display: flex;
+  justify-content: center;
+}
+
+.bottomNav button {
+  width: 9em;
+}
+
+.modalNav {
+  display: flex;
+  grid-gap: 10px;
+  justify-content: center;
+}
+
+#modalContainer {
+  position: fixed;
+  background: url('./assets/xmasBackground.png') #000000;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom; 
+  height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background: #3b3b3b;
+  padding: 20px;
+  box-shadow: 0 0 10px #fff;
+}
+
+#startButton {
+  margin: 1em auto;
+}
+
+#person {
+  color: #ed143d;
+}
+
+.notBought {
+  color: #e65f5f;
+}
+
+.bought {
+  color: #90ee90;
+}
+
+#notice {
+  margin: 0;
+  font-size: 12px;
 }
 
 

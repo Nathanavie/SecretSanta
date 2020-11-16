@@ -4,128 +4,128 @@ import './App.css';
 function App() {
   return (
     <>
-      <div class="snowflakes" aria-hidden="true">
-          <div class="snowflake">
+      <div className="snowflakes" aria-hidden="true">
+          <div className="snowflake">
           ❅
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❅
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❆
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❅
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❆
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❅
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❆
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
-          <div class="snowflake">
+          <div className="snowflake">
           ❄
           </div>
       </div>

@@ -22,7 +22,9 @@ class AppRouter extends React.Component {
             userGroups: [],
             allGroups: [],
             allUsers: [],
-            buyingGroups: []
+            buyingGroups: [],
+            joinGroup: false,
+            passValid: ''
         }
     }
 
@@ -82,6 +84,17 @@ class AppRouter extends React.Component {
                 })
             })
         })
+    }
+
+    linkJoinGroup = (groupID) => {
+        let uid = this.state.uid;
+        this.setState({
+            joinGroup: true
+        })
+    }
+
+    loginAndJoin = () => {
+
     }
 
     joinGroup = (groupID) => {
@@ -188,24 +201,30 @@ class AppRouter extends React.Component {
 
     }
 
-    checkUserSetup = (uid) => {
-        let allUsers = this.state.allUsers
-        let matched = 0
-        for(let user in allUsers) {
-            if(user === uid) {
-                matched++
-                console.log('EQUAL!')
-            } 
-        }
-        console.log(matched)
-        if(matched === 0) {
-            let link = window.location.href
-            console.log(window.location.href)
-            let suffix = link.indexOf('login')
-            let prefix = link.slice(0, suffix)
-            window.location.href = `${prefix}setup`
-        }
-    }
+    //This is a good idea but it just doesn't work and there is literally no reason as to why it wont check and do the correct action :-)
+
+    // checkUserSetup = (uid) => {
+    //     let allUsers = this.state.allUsers
+    //     let matched = 0
+    //     let link = window.location.href
+    //     let suffix = link.indexOf('login')
+    //     let prefix = link.slice(0, suffix)
+    //     let keys = Object.keys(allUsers)
+    //     for(let i = 0; i < keys.length; i++) {
+    //         if(keys[i] === uid) {
+    //             matched++;
+    //             if(Object.values(allUsers)[i].firstname) {
+    //                 console.log(`welcome ${Object.values(allUsers)[i].firstname}!`)
+    //                 window.location.href = `${prefix}home`;
+    //             } else {
+    //                 window.location.href = `${prefix}setup`;
+    //             }
+    //         }
+    //     }
+    //     if(matched === 0) {
+    //         window.location.href = `${prefix}setup`;
+    //     }
+    // }
 
     getRandomString = (length) => {
         var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -221,7 +240,6 @@ class AppRouter extends React.Component {
             .auth()
             .signInWithEmailAndPassword(email, password)
             .then(res => {
-                this.checkUserSetup(res.user.uid)
                 this.setState({uid: res.user.uid});
                 this.authStateChanged().then(() => {
                     this.pullFromFirebase()
@@ -235,6 +253,9 @@ class AppRouter extends React.Component {
                     window.location.href = `${prefix}signup`
                 } else if (error.code === 'auth/wrong-password') {
                     console.error(error.code)
+                    this.setState({
+                        passValid: false
+                    })
                 }
             });
     }
@@ -249,17 +270,17 @@ class AppRouter extends React.Component {
     }   
 
     render() {
-        let { uid, newUser, userGroups, allUsers, buyingGroups } = this.state;
+        let { uid, newUser, userGroups, allUsers, buyingGroups, passValid } = this.state;
         return(
             <Router>
             <Header logOutUser={this.logOutUser} auth={uid} />
                 <Switch>
                     <Route exact path="/">{ <Redirect to={"/login"} />}</Route>                    
                     <ProtectedRoute path="/signup" new={newUser} auth={uid} render={ () => <SignUp createUser={this.createUser}/>}/>
-                    <ProtectedRoute path="/login" new={newUser} auth={uid} render={ () => <Login logIn={this.logInUser}/>}/>
+                    <ProtectedRoute path="/login" new={newUser} auth={uid} render={ () => <Login passWordValid={passValid} loginAndJoin={this.loginAndJoin} logIn={this.logInUser}/>}/>
+                    {/* <ProtectedRoute path="/login" new={newUser} auth={uid} render={ () => <Join uid={this.state.uid} Group={this.joinGroup} joinFromLink={this.linkJoinGroup}/>}/> */}
                     <PrivateRoute path="/setup" auth={uid} render={ () => <Setup userEmail={this.state.userEmail} pushUser={this.pushToFirebase}/>}/>
                     <PrivateRoute path="/home" auth={uid} render={ () => <Home userGroups={userGroups} uid={this.state.uid} getGroups={this.updateGroups} joinGroup={this.joinGroup} createGroup={this.createGroup}/>}/>
-                    <PrivateRoute path="/join" auth={uid} render={ () => <Join uid={this.state.uid} joinGroup={this.joinGroup} createGroup={this.createGroup}/>}/>
                     <PrivateRoute path="/group" auth={uid} render={ () => <Group buyingGroups={buyingGroups} buyers={this.addBuyingGroups} bought={this.setToBought} allUsers={allUsers} userGroups={userGroups} uid={uid} start={this.startSecretSanta}/>}/>
                 </Switch>  
             </Router>

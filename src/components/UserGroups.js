@@ -25,7 +25,7 @@ const UserGroups = props => {
         )
     } else {
         return(
-            <div className="groupContainer">You are not yet part of any groups {totalGroupsUserIsIn}</div>
+            <div className="groupContainer">You aren't in any groups! Why not create one?</div>
         )
     }
 }

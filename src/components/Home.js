@@ -53,7 +53,7 @@ class Home extends React.Component {
             return (
                 <div className="createGroups">
                     <h1>Create a group</h1>
-                    <form onSubmit={this.createGroup}>
+                    <form className="detailsForm" onSubmit={this.createGroup}>
                         <label htmlFor="groupName">Group Name</label>
                         <input
                             type="text"
@@ -104,19 +104,21 @@ class Home extends React.Component {
                             value="Create group"
                         />
                     </form>
-                    <button onClick={() => this.setState({page: "groups"})}>Back</button>
-                    <button onClick={() => this.props.logOutUser()}>Log Out</button>
+                    <div className="bottomNav">
+                        <button onClick={() => this.setState({page: "groups"})}>Back</button>
+                    </div>
                 </div>
             )
         } else if(page === "Join") {
             return (
                 <div className="joinGroups">
                     <h1>Join a group</h1>
-                    <form onSubmit={this.joinGroup}>
+                    <form className="detailsForm" onSubmit={this.joinGroup}>
                         <label htmlFor="joinGroupID">Group Code</label>
                         <input
                             type="text"
                             name="joinGroupID"
+                            placeholder="Group Code"
                             value={this.state.joinGroupID}
                             onChange={this.handleChange}
                         />
@@ -125,8 +127,9 @@ class Home extends React.Component {
                             value="Join Group"
                         />
                     </form>
-                    <button onClick={() => this.setState({page: "groups"})}>Back</button>
-                    <button onClick={() => this.props.logOutUser()}>Log Out</button>
+                    <div className="bottomNav">
+                        <button onClick={() => this.setState({page: "groups"})}>Back</button>
+                    </div>
                 </div>
             )
         } else {
