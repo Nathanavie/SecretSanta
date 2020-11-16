@@ -10,7 +10,6 @@ import Setup from '../components/Setup';
 import SignUp from '../components/SignUp';
 import Group from '../components/Group';
 import Header from '../components/Header';
-import Join from '../components/Join';
 
 class AppRouter extends React.Component {
     constructor(props){
@@ -86,12 +85,12 @@ class AppRouter extends React.Component {
         })
     }
 
-    linkJoinGroup = (groupID) => {
-        let uid = this.state.uid;
-        this.setState({
-            joinGroup: true
-        })
-    }
+    // linkJoinGroup = (groupID) => {
+    //     let uid = this.state.uid;
+    //     this.setState({
+    //         joinGroup: true
+    //     })
+    // }
 
     loginAndJoin = () => {
 

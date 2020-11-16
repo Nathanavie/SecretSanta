@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 
 const UserGroups = props => {
-    let totalGroupsUserIsIn = 0;
+    // let totalGroupsUserIsIn = 0;
 
     const usersGroups = props.userGroups.map((group, index) => {
         let groupID = Object.keys(group)[0]
