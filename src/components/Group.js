@@ -33,6 +33,12 @@ const Group = props => {
         }
     })
 
+    if(groupRules === undefined) {
+        let beginningOfLink = pageURL.slice(0, (indexOfGroupID - slicePrefix.length))
+        let homeLink = `${beginningOfLink}home`
+        window.location.href = homeLink
+    }
+
     for(var key in groupMembers) {
         for(let user in allUsers) {
             if(user === key) {
@@ -88,9 +94,7 @@ const Group = props => {
         props.bought(id)
     } 
 
-    const copyInvLink = () => {
-        // let beginningOfLink = pageURL.slice(0, (indexOfGroupID - slicePrefix.length))
-        // let invLink = `${beginningOfLink}join/${groupID}` 
+    const copyInvLink = () => { 
         navigator.clipboard.writeText(groupID)
     }
     
